@@ -1,22 +1,27 @@
-CREATE DATABASE sql11189253;
-USE sql11189253;
-DROP DATABASE IF EXISTS sql11189253;
+CREATE DATABASE store;
+USE store;
+DROP DATABASE IF EXISTS store;
+
+DROP TABLE category;
+DROP TABLE product;
+unlock tables;
+SET SQL_SAFE_UPDATES=0;
 
 CREATE TABLE category(
 id INT auto_increment PRIMARY KEY, 
-name VARCHAR(30)
+name VARCHAR(30) unique
 );
 
 CREATE TABLE product(
 category INT,
 description VARCHAR(50),
 price DOUBLE,
-title VARCHAR(50),
+title VARCHAR (50),
 favorite boolean default false,
 img_url VARCHAR(500),
 id INT auto_increment PRIMARY KEY
 );
-
+SET FOREIGN_KEY_CHECKS=0;
 -- describe product;
 
 INSERT INTO category (name) VALUES 
@@ -40,5 +45,6 @@ GROUP BY category.id ORDER BY category.id;
 
 SELECT product.id FROM product;
 SELECT * FROM product WHERE id = 2
-
-
+unlock tables
+delete from product where category = 1
+select * from category
